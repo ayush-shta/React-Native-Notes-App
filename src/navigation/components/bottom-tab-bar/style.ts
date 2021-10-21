@@ -8,7 +8,7 @@ const style = StyleSheet.create({
     justifyContent: 'space-between',
   },
   iconTab: {
-    paddingVertical: 16,
+    paddingVertical: 8,
     alignItems: 'center',
   },
   tabBar: {

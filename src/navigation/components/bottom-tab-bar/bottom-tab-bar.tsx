@@ -1,5 +1,6 @@
 import React from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import {
   TabNavigationState,
   ParamListBase,
@@ -23,61 +24,65 @@ const BottomTabBar = (props: TabBarProps) => {
   const {state, descriptors, navigation} = props;
 
   return (
-    <View style={style.tabBar}>
-      {state.routes.map((route: any, index: number) => {
-        const {options} = descriptors[route.key];
-        const label =
-          options.tabBarLabel !== undefined
-            ? options.tabBarLabel
-            : options.title !== undefined
-            ? options.title
-            : route.name;
+    <SafeAreaView edges={['bottom']}>
+      <View style={style.tabBar}>
+        {state.routes.map((route: any, index: number) => {
+          const {options} = descriptors[route.key];
+          const label =
+            options.tabBarLabel !== undefined
+              ? options.tabBarLabel
+              : options.title !== undefined
+              ? options.title
+              : route.name;
 
-        const isFocused = state.index === index;
+          const isFocused = state.index === index;
 
-        const onPress = () => {
-          const event = navigation.emit({
-            type: 'tabPress',
-            target: route.key,
-            canPreventDefault: true,
-          });
+          const onPress = () => {
+            const event = navigation.emit({
+              type: 'tabPress',
+              target: route.key,
+              canPreventDefault: true,
+            });
 
-          if (!isFocused && !event.defaultPrevented) {
-            navigation.navigate(route.name);
-          }
-        };
+            if (!isFocused && !event.defaultPrevented) {
+              navigation.navigate(route.name);
+            }
+          };
 
-        const onLongPress = () => {
-          navigation.emit({
-            type: 'tabLongPress',
-            target: route.key,
-          });
-        };
+          const onLongPress = () => {
+            navigation.emit({
+              type: 'tabLongPress',
+              target: route.key,
+            });
+          };
 
-        const iconStyle = isFocused ? style.iconFocused : style.iconNotFocused;
+          const iconStyle = isFocused
+            ? style.iconFocused
+            : style.iconNotFocused;
 
-        const labelTextStyle = isFocused
-          ? style.labelFocused
-          : style.labelNotFocused;
+          const labelTextStyle = isFocused
+            ? style.labelFocused
+            : style.labelNotFocused;
 
-        return (
-          <TouchableOpacity
-            key={index}
-            onPress={onPress}
-            style={style.container}
-            onLongPress={onLongPress}
-            accessibilityRole="button"
-            testID={options.tabBarTestID}
-            accessibilityState={isFocused ? {selected: true} : {}}
-            accessibilityLabel={options.tabBarAccessibilityLabel}>
-            <View style={style.iconTab}>
-              {options?.tabBarIcon && options.tabBarIcon(iconStyle)}
-              <Text style={labelTextStyle}>{label}</Text>
-            </View>
-          </TouchableOpacity>
-        );
-      })}
-    </View>
+          return (
+            <TouchableOpacity
+              key={index}
+              onPress={onPress}
+              style={style.container}
+              onLongPress={onLongPress}
+              accessibilityRole="button"
+              testID={options.tabBarTestID}
+              accessibilityState={isFocused ? {selected: true} : {}}
+              accessibilityLabel={options.tabBarAccessibilityLabel}>
+              <View style={style.iconTab}>
+                {options?.tabBarIcon && options.tabBarIcon(iconStyle)}
+                <Text style={labelTextStyle}>{label}</Text>
+              </View>
+            </TouchableOpacity>
+          );
+        })}
+      </View>
+    </SafeAreaView>
   );
 };
 
