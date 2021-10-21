@@ -1,6 +1,8 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
+import style from './style';
+import appTheme from '../../constants/app-theme';
 import {BottomTabStackParams} from '../navigation.types';
 
 import ArchivedNotes from '../../screen/archived-notes';
@@ -17,21 +19,40 @@ const BottomTab = createBottomTabNavigator<BottomTabStackParams>();
 
 const BottomTabStacks = () => {
   return (
-    <BottomTab.Navigator tabBar={props => <BottomTabBar {...props} />}>
+    <BottomTab.Navigator
+      tabBar={props => <BottomTabBar {...props} />}
+      screenOptions={{
+        headerStyle: style.header,
+        headerTitleStyle: style.headerTitle,
+        headerTintColor: appTheme.white,
+        headerTitleAlign: 'left',
+      }}>
       <BottomTab.Screen
         name="notes"
         component={NotesList}
-        options={{tabBarLabel: 'Notes', tabBarIcon: NotesTabIcon}}
+        options={{
+          tabBarLabel: 'Notes',
+          title: 'Notes',
+          tabBarIcon: NotesTabIcon,
+        }}
       />
       <BottomTab.Screen
         name="favourite"
         component={FavouriteNotes}
-        options={{tabBarLabel: 'Favourites', tabBarIcon: FavouriteTabIcon}}
+        options={{
+          title: 'Favourites',
+          tabBarLabel: 'Favourites',
+          tabBarIcon: FavouriteTabIcon,
+        }}
       />
       <BottomTab.Screen
         name="archived"
         component={ArchivedNotes}
-        options={{tabBarLabel: 'Archived', tabBarIcon: ArchivedTabIcon}}
+        options={{
+          title: 'Archived',
+          tabBarLabel: 'Archived',
+          tabBarIcon: ArchivedTabIcon,
+        }}
       />
     </BottomTab.Navigator>
   );
