@@ -10,10 +10,10 @@ export const addNewNote = (
     id: uuid.v4().toString(),
     title: noteTitle,
     body: noteDescription,
-    is_favorite: false,
-    is_archived: false,
-    created_at: new Date(),
-    updated_at: new Date(),
+    isFavorite: false,
+    isArchived: false,
+    createdAt: new Date(),
+    updatedAt: new Date(),
   };
 
   return {

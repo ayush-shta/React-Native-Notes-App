@@ -24,7 +24,7 @@ const noteReducer = (
         ...state,
         notes: state.notes.map(note =>
           note.id === action.payload.noteId
-            ? {...note, is_favorite: action.payload.isFavourite}
+            ? {...note, isFavorite: action.payload.isFavourite}
             : note,
         ),
       };
@@ -34,7 +34,7 @@ const noteReducer = (
         ...state,
         notes: state.notes.map(note =>
           note.id === action.payload.noteId
-            ? {...note, is_archived: action.payload.isArchived}
+            ? {...note, isArchived: action.payload.isArchived}
             : note,
         ),
       };

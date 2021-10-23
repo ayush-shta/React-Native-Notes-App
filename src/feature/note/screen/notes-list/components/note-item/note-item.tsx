@@ -6,14 +6,17 @@ import {View, Text, TouchableOpacity} from 'react-native';
 
 import style from './style';
 import {Note} from '../../../../note.types';
+import * as notesActions from '../../../../note.action';
+import {connect} from 'react-redux';
 
 interface NoteItemProps {
   note: Note;
+  setFavouriteNote: (noteId: string, isFavourite: boolean) => void;
 }
 
 const NoteItem = (props: NoteItemProps) => {
-  const {note} = props;
-  const {title, body: description} = note;
+  const {note, setFavouriteNote} = props;
+  const {title, body: description, isFavorite, isArchived} = note;
 
   const navigation = useNavigation<any>();
 
@@ -23,13 +26,22 @@ const NoteItem = (props: NoteItemProps) => {
       params: {note},
     });
 
-  const FavouriteButtonIcon = () => (
-    <Icon
-      style={[style.actionButton, style.favouriteButton]}
-      name="star"
-      size={16}
-    />
-  );
+  const FavouriteButtonIcon = () => {
+    const iconName = isFavorite ? 'star' : 'staro';
+
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          setFavouriteNote(note.id, !isFavorite);
+        }}>
+        <Icon
+          style={[style.actionButton, style.favouriteButton]}
+          name={iconName}
+          size={16}
+        />
+      </TouchableOpacity>
+    );
+  };
 
   const ArchivedButtonIcon = () => (
     <Icon
@@ -60,4 +72,9 @@ const NoteItem = (props: NoteItemProps) => {
   );
 };
 
-export default NoteItem;
+const mapDispatchToProps = (dispatch: Function) => ({
+  setFavouriteNote: (noteId: string, isFavourite: boolean) =>
+    dispatch(notesActions.setFavouriteNote(noteId, isFavourite)),
+});
+
+export default connect(null, mapDispatchToProps)(NoteItem);
