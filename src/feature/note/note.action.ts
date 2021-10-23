@@ -1,4 +1,5 @@
 import {Note} from './note.types';
+import uuid from 'react-native-uuid';
 import * as noteActions from './note.action-types';
 
 export const addNewNote = (
@@ -6,7 +7,7 @@ export const addNewNote = (
   noteDescription: string,
 ): noteActions.AddNote => {
   const newNote: Note = {
-    id: '1',
+    id: uuid.v4().toString(),
     title: noteTitle,
     body: noteDescription,
     is_favorite: false,
