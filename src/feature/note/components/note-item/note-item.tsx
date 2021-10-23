@@ -5,8 +5,8 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import {View, Text, TouchableOpacity} from 'react-native';
 
 import style from './style';
-import {Note} from '../../../../note.types';
-import * as notesActions from '../../../../note.action';
+import {Note} from '../../note.types';
+import * as notesActions from '../../note.action';
 import {connect} from 'react-redux';
 
 interface NoteItemProps {

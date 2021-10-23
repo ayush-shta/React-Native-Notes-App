@@ -6,7 +6,7 @@ import style from './style';
 import {Note} from '../../note.types';
 import {RootState} from '../../../../reducers';
 
-import NoteItem from './components/note-item';
+import NoteItem from '../../components/note-item';
 import AddNoteFab from './components/add-note-fab';
 import EmptyNotesList from './components/empty-notes-list';
 
