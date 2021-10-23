@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from '@react-navigation/native';
 
 import style from './style';
-import appTheme from '../../../../../constants/app-theme';
+import appTheme from '../../../../../../constants/app-theme';
 
 const AddNoteFab = () => {
   const navigation = useNavigation<any>();

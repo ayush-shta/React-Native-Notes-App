@@ -5,10 +5,10 @@ import style from './style';
 import appTheme from '../../constants/app-theme';
 import {BottomTabStackParams} from '../navigation.types';
 
-import ArchivedNotes from '../../screen/archived-notes';
+import ArchivedNotes from '../../feature/note/screen/archived-notes';
 import BottomTabBar from '../components/bottom-tab-bar';
-import FavouriteNotes from '../../screen/favourite-notes';
-import NotesList from '../../screen/notes-list/notes-list';
+import FavouriteNotes from '../../feature/note/screen/favourite-notes';
+import NotesList from '../../feature/note/screen/notes-list/notes-list';
 import {
   ArchivedTabIcon,
   FavouriteTabIcon,

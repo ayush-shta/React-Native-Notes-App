@@ -3,8 +3,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {ModalStackParams} from '../navigation.types';
 
-import AddNote from '../../screen/add-note';
-import NoteDetail from '../../screen/note-detail';
+import AddNote from '../../feature/note/screen/add-note';
+import NoteDetail from '../../feature/note/screen/note-detail';
 
 const ModalStack = createNativeStackNavigator<ModalStackParams>();
 
