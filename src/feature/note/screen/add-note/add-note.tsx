@@ -3,12 +3,12 @@ import {View, ScrollView, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 
 import style from './style';
-import appTheme from '../../constants/app-theme';
+import appTheme from '../../../constants/app-theme';
 
-import Page from '../../components/page';
-import TextArea from '../../components/text-area';
-import KeyboardAvoiding from '../../components/keyboard-avoiding';
-import ModalAppBar from '../../components/modal-app-bar/modal-app-bar';
+import Page from '../../../components/page';
+import TextArea from '../../../components/text-area';
+import KeyboardAvoiding from '../../../components/keyboard-avoiding';
+import ModalAppBar from '../../../components/modal-app-bar/modal-app-bar';
 
 const AddNote = () => {
   const [note, setNote] = useState('');

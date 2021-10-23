@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-import appTheme from '../../../../constants/app-theme';
+import appTheme from '../../../../../constants/app-theme';
 
 const style = StyleSheet.create({
   container: {

@@ -4,8 +4,8 @@ import Icon from 'react-native-vector-icons/AntDesign';
 
 import style from './style';
 
-import Page from '../../components/page';
-import ModalAppBar from '../../components/modal-app-bar/modal-app-bar';
+import Page from '../../../components/page';
+import ModalAppBar from '../../../components/modal-app-bar/modal-app-bar';
 
 const NoteDetail = () => {
   const EditButton = () => (
