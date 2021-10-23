@@ -2,6 +2,8 @@ import {CompositeNavigationProp} from '@react-navigation/native';
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
+import {Note} from '../feature/note/note.types';
+
 export type RootStackParams = {
   homeStacks: undefined;
 };
@@ -18,7 +20,7 @@ export type BottomTabStackParams = {
 };
 
 export type ModalStackParams = {
-  noteDetail: {title: string; description: string};
+  noteDetail: {note: Note};
   addNote: undefined;
 };
 

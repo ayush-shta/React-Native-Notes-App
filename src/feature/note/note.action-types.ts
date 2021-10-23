@@ -1,8 +1,8 @@
 import {Note} from './note.types';
 
 export const ADD_NOTE = '@@action/NOTE/ADD_NOTE';
-export const SET_FAVOURITE_NOTE = '@@action/NOTE/ADD_NOTE';
-export const SET_ARCHIVE_NOTE = '@@action/NOTE/ADD_NOTE';
+export const SET_FAVOURITE_NOTE = '@@action/NOTE/SET_FAVOURITE_NOTE';
+export const SET_ARCHIVE_NOTE = '@@action/NOTE/SET_ARCHIVE_NOTE';
 
 export interface AddNote {
   type: typeof ADD_NOTE;

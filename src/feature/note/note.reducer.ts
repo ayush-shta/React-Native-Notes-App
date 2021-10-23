@@ -15,17 +15,15 @@ const noteReducer = (
 ): State => {
   switch (action.type) {
     case noteActions.ADD_NOTE:
-      const newAction = action as noteActions.AddNote;
-
       return {
         ...state,
-        notes: [newAction.payload.note, ...state.notes],
+        notes: [action.payload.note, ...state.notes],
       };
     case noteActions.SET_FAVOURITE_NOTE:
       return {
         ...state,
         notes: state.notes.map(note =>
-          note.id === action.payload.id
+          note.id === action.payload.noteId
             ? {...note, is_favorite: action.payload.isFavourite}
             : note,
         ),
@@ -35,7 +33,7 @@ const noteReducer = (
       return {
         ...state,
         notes: state.notes.map(note =>
-          note.id === action.payload.id
+          note.id === action.payload.noteId
             ? {...note, is_archived: action.payload.isArchived}
             : note,
         ),
