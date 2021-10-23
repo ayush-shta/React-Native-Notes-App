@@ -1,26 +1,45 @@
 import React from 'react';
-import {View} from 'react-native';
+import {FlatList, View} from 'react-native';
+import {connect} from 'react-redux';
 
 import style from './style';
+import {Note} from '../../note.types';
+import {RootState} from '../../../../reducers';
 
 import NoteItem from './components/note-item';
 import AddNoteFab from './components/add-note-fab';
 import EmptyNotesList from './components/empty-notes-list';
 
-const NotesList = () => {
-  // TODO Check for empty notes
-  const isNotesEmpty = false;
+interface NoteListProps {
+  notes: Array<Note>;
+}
 
-  if (isNotesEmpty) {
-    return <EmptyNotesList />;
+const NotesList = (props: NoteListProps) => {
+  const {notes} = props;
+
+  if (notes.length <= 0) {
+    return (
+      <>
+        <EmptyNotesList />
+        <AddNoteFab />
+      </>
+    );
   }
 
   return (
     <View style={style.container}>
-      <NoteItem />
+      <FlatList
+        data={notes}
+        keyExtractor={item => item.id}
+        renderItem={({item}) => <NoteItem note={item} />}
+      />
       <AddNoteFab />
     </View>
   );
 };
 
-export default NotesList;
+const mapStateToProps = (state: RootState) => ({
+  notes: state.noteReducer.notes,
+});
+
+export default connect(mapStateToProps)(NotesList);

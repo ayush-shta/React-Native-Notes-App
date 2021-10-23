@@ -5,25 +5,22 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import {View, Text, TouchableOpacity} from 'react-native';
 
 import style from './style';
+import {Note} from '../../../../note.types';
 
-const NoteItem = () => {
-  // TODO: Add additional implementation with props
+interface NoteItemProps {
+  note: Note;
+}
+
+const NoteItem = (props: NoteItemProps) => {
+  const {note} = props;
+  const {title, body: description} = note;
 
   const navigation = useNavigation<any>();
-
-  const title: string =
-    'New Note title New Note title New Note title New Note title New Note' +
-    'title New Note title New Note titleNew Note title New Note title New';
-
-  const description: string =
-    'This is a note This is a note This is a note This is a note This is a note This is a note ' +
-    'This is a note This is a note This is a note This' +
-    'is a note This is a note This is a note This is a note This is a note';
 
   const navigateToNoteDetail = () =>
     navigation.navigate('modal', {
       screen: 'noteDetail',
-      params: {title: title, description: description},
+      params: {note},
     });
 
   const FavouriteButtonIcon = () => (
