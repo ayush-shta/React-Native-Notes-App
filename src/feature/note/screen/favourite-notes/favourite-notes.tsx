@@ -1,23 +1,39 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {connect} from 'react-redux';
+import {View, Text, FlatList} from 'react-native';
 
 import style from './style';
+import {Note} from '../../note.types';
+import {RootState} from '../../../../reducers';
 
+import NoteItem from '../../components/note-item';
 import EmptyFavouriteNotes from './components/empty-favourite-notes';
 
-const FavouriteNotes = () => {
-  // TODO Check for empty notes
-  const isNotesEmpty = true;
+interface FavouriteNotesProps {
+  favouriteNotes: Array<Note>;
+}
+const FavouriteNotes = (props: FavouriteNotesProps) => {
+  const {favouriteNotes} = props;
 
-  if (isNotesEmpty) {
+  if (favouriteNotes.length <= 0) {
     return <EmptyFavouriteNotes />;
   }
 
   return (
     <View style={style.container}>
-      <Text>Favourites</Text>
+      <FlatList
+        data={favouriteNotes}
+        keyExtractor={item => item.id}
+        renderItem={({item}) => <NoteItem note={item} />}
+      />
     </View>
   );
 };
 
-export default FavouriteNotes;
+const mapStateToProps = (state: RootState) => ({
+  favouriteNotes: state.noteReducer.notes.filter(
+    note => note.isFavorite === true,
+  ),
+});
+
+export default connect(mapStateToProps)(FavouriteNotes);
