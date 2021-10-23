@@ -24,6 +24,19 @@ export const addNewNote = (
   };
 };
 
+export const updateNote = (
+  noteId: string,
+  noteTitle: string,
+  noteDescription: string,
+): noteActions.UpdateNote => ({
+  type: noteActions.UPDATE_NOTE,
+  payload: {
+    noteId,
+    noteTitle,
+    noteDescription,
+  },
+});
+
 export const setFavouriteNote = (
   noteId: string,
   isFavourite: boolean,

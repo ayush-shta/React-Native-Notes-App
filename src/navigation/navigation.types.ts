@@ -21,6 +21,7 @@ export type BottomTabStackParams = {
 
 export type ModalStackParams = {
   noteDetail: {note: Note};
+  editNote: {note: Note};
   addNote: undefined;
 };
 

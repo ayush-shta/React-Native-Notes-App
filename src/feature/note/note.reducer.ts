@@ -19,6 +19,20 @@ const noteReducer = (
         ...state,
         notes: [action.payload.note, ...state.notes],
       };
+
+    case noteActions.UPDATE_NOTE:
+      return {
+        ...state,
+        notes: state.notes.map(note =>
+          note.id === action.payload.noteId
+            ? {
+                ...note,
+                title: action.payload.noteTitle,
+                body: action.payload.noteDescription,
+              }
+            : note,
+        ),
+      };
     case noteActions.SET_FAVOURITE_NOTE:
       return {
         ...state,
