@@ -19,6 +19,7 @@ export type BottomTabStackParams = {
 
 export type ModalStackParams = {
   noteDetail: {title: string; description: string};
+  addNote: undefined;
 };
 
 export type HomeNavigationProp = CompositeNavigationProp<
