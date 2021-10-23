@@ -1,13 +1,15 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
 
 import style from './style';
 
+import NoteItem from './components/note-item';
+import AddNoteFab from './components/add-note-fab';
 import EmptyNotesList from './components/empty-notes-list';
 
 const NotesList = () => {
   // TODO Check for empty notes
-  const isNotesEmpty = true;
+  const isNotesEmpty = false;
 
   if (isNotesEmpty) {
     return <EmptyNotesList />;
@@ -15,7 +17,8 @@ const NotesList = () => {
 
   return (
     <View style={style.container}>
-      <Text>Notes List</Text>
+      <NoteItem />
+      <AddNoteFab />
     </View>
   );
 };

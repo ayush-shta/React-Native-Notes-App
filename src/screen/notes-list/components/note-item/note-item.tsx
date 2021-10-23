@@ -1,12 +1,30 @@
 import React from 'react';
-import {View, Text} from 'react-native';
 import {Card} from 'react-native-elements';
+import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
+import {View, Text, TouchableOpacity} from 'react-native';
 
 import style from './style';
 
 const NoteItem = () => {
   // TODO: Add additional implementation with props
+
+  const navigation = useNavigation<any>();
+
+  const title: string =
+    'New Note title New Note title New Note title New Note title New Note' +
+    'title New Note title New Note titleNew Note title New Note title New';
+
+  const description: string =
+    'This is a note This is a note This is a note This is a note This is a note This is a note ' +
+    'This is a note This is a note This is a note This' +
+    'is a note This is a note This is a note This is a note This is a note';
+
+  const navigateToNoteDetail = () =>
+    navigation.navigate('modal', {
+      screen: 'noteDetail',
+      params: {title: title, description: description},
+    });
 
   const FavouriteButtonIcon = () => (
     <Icon
@@ -25,29 +43,23 @@ const NoteItem = () => {
   );
 
   return (
-    <Card containerStyle={style.container}>
-      <View style={style.cardTitleWrapper}>
-        <Text style={style.cardTitle} numberOfLines={1}>
-          New Note title New Note title New Note title New Note title New Note
-          title New Note title New Note titleNew Note title New Note title New
-          Note title New Note title New Note title New Note title New Note
-          titleNew Note title New Note title New Note title New Note title New
-          Note title New Note title New Note title
-        </Text>
-        <View style={style.actionButtonWrapper}>
-          <FavouriteButtonIcon />
-          <ArchivedButtonIcon />
+    <TouchableOpacity onPress={() => navigateToNoteDetail()}>
+      <Card containerStyle={style.container}>
+        <View style={style.cardTitleWrapper}>
+          <Text style={style.cardTitle} numberOfLines={1}>
+            {title}
+          </Text>
+          <View style={style.actionButtonWrapper}>
+            <FavouriteButtonIcon />
+            <ArchivedButtonIcon />
+          </View>
         </View>
-      </View>
-      <Card.Divider />
-      <Text style={style.cardDescription} numberOfLines={3}>
-        This is a note This is a note This is a note This is a note This is a
-        note This is a note This is a note This is a note This is a note This is
-        a note This is a note This is a note This is a note This is a note This
-        is a noteThis is a note This is a note This is a note This is a note
-        This is a note.
-      </Text>
-    </Card>
+        <Card.Divider />
+        <Text style={style.cardDescription} numberOfLines={3}>
+          {description}
+        </Text>
+      </Card>
+    </TouchableOpacity>
   );
 };
 
