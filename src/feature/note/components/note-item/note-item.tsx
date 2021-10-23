@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import {Card} from 'react-native-elements';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
@@ -7,15 +8,15 @@ import {View, Text, TouchableOpacity} from 'react-native';
 import style from './style';
 import {Note} from '../../note.types';
 import * as notesActions from '../../note.action';
-import {connect} from 'react-redux';
 
 interface NoteItemProps {
   note: Note;
   setFavouriteNote: (noteId: string, isFavourite: boolean) => void;
+  setArchiveNote: (noteId: string, isArchived: boolean) => void;
 }
 
 const NoteItem = (props: NoteItemProps) => {
-  const {note, setFavouriteNote} = props;
+  const {note, setFavouriteNote, setArchiveNote} = props;
   const {title, body: description, isFavorite, isArchived} = note;
 
   const navigation = useNavigation<any>();
@@ -30,10 +31,7 @@ const NoteItem = (props: NoteItemProps) => {
     const iconName = isFavorite ? 'star' : 'staro';
 
     return (
-      <TouchableOpacity
-        onPress={() => {
-          setFavouriteNote(note.id, !isFavorite);
-        }}>
+      <TouchableOpacity onPress={() => setFavouriteNote(note.id, !isFavorite)}>
         <Icon
           style={[style.actionButton, style.favouriteButton]}
           name={iconName}
@@ -43,13 +41,19 @@ const NoteItem = (props: NoteItemProps) => {
     );
   };
 
-  const ArchivedButtonIcon = () => (
-    <Icon
-      style={[style.actionButton, style.archiveButton]}
-      name="inbox"
-      size={16}
-    />
-  );
+  const ArchivedButtonIcon = () => {
+    const iconName = isArchived ? 'circledown' : 'circledowno';
+
+    return (
+      <TouchableOpacity onPress={() => setArchiveNote(note.id, !isArchived)}>
+        <Icon
+          style={[style.actionButton, style.archiveButton]}
+          name={iconName}
+          size={16}
+        />
+      </TouchableOpacity>
+    );
+  };
 
   return (
     <TouchableOpacity onPress={() => navigateToNoteDetail()}>
@@ -75,6 +79,8 @@ const NoteItem = (props: NoteItemProps) => {
 const mapDispatchToProps = (dispatch: Function) => ({
   setFavouriteNote: (noteId: string, isFavourite: boolean) =>
     dispatch(notesActions.setFavouriteNote(noteId, isFavourite)),
+  setArchiveNote: (noteId: string, isArchived: boolean) =>
+    dispatch(notesActions.setArchiveNote(noteId, isArchived)),
 });
 
 export default connect(null, mapDispatchToProps)(NoteItem);

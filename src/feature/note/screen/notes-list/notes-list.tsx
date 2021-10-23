@@ -1,6 +1,6 @@
 import React from 'react';
-import {FlatList, View} from 'react-native';
 import {connect} from 'react-redux';
+import {FlatList, View} from 'react-native';
 
 import style from './style';
 import {Note} from '../../note.types';
@@ -39,7 +39,7 @@ const NotesList = (props: NoteListProps) => {
 };
 
 const mapStateToProps = (state: RootState) => ({
-  notes: state.noteReducer.notes,
+  notes: state.noteReducer.notes.filter(note => note.isArchived === false),
 });
 
 export default connect(mapStateToProps)(NotesList);

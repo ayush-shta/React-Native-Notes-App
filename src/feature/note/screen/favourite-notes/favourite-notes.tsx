@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {View, Text, FlatList} from 'react-native';
+import {View, FlatList} from 'react-native';
 
 import style from './style';
 import {Note} from '../../note.types';
