@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import {Card} from 'react-native-elements';
-import Icon from 'react-native-vector-icons/SimpleLineIcons';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 import style from './style';
 
@@ -10,7 +10,7 @@ const NoteItem = () => {
 
   const FavouriteButtonIcon = () => (
     <Icon
-      style={[style.actionButton, style.favouriteButtonFilled]}
+      style={[style.actionButton, style.favouriteButton]}
       name="star"
       size={16}
     />
@@ -18,8 +18,8 @@ const NoteItem = () => {
 
   const ArchivedButtonIcon = () => (
     <Icon
-      style={[style.actionButton, style.actionButtonDisabled]}
-      name="briefcase"
+      style={[style.actionButton, style.archiveButton]}
+      name="inbox"
       size={16}
     />
   );

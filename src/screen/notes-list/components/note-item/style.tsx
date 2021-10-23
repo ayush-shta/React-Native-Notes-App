@@ -28,14 +28,11 @@ const style = StyleSheet.create({
     alignItems: 'center',
     fontWeight: 'bold',
   },
-  favouriteButtonFilled: {
+  favouriteButton: {
     color: appTheme.secondaryGold,
   },
-  archiveButtonFilled: {
+  archiveButton: {
     color: appTheme.secondaryGreen,
-  },
-  actionButtonDisabled: {
-    color: appTheme.darkGray,
   },
 });
 
