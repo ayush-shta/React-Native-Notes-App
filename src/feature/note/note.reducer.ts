@@ -29,6 +29,7 @@ const noteReducer = (
                 ...note,
                 title: action.payload.noteTitle,
                 body: action.payload.noteDescription,
+                updatedAt: new Date(),
               }
             : note,
         ),
