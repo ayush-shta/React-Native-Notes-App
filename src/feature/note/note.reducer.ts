@@ -1,4 +1,5 @@
 import {Note} from './note.types';
+import {getCurrentDate} from '../../utils/date';
 import * as noteActions from './note.action-types';
 
 interface State {
@@ -29,7 +30,7 @@ const noteReducer = (
                 ...note,
                 title: action.payload.noteTitle,
                 body: action.payload.noteDescription,
-                updatedAt: new Date(),
+                updatedAt: getCurrentDate(),
               }
             : note,
         ),

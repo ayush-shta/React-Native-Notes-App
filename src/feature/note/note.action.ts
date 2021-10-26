@@ -1,5 +1,7 @@
-import {Note} from './note.types';
 import uuid from 'react-native-uuid';
+
+import {Note} from './note.types';
+import {getCurrentDate} from '../../utils/date';
 import * as noteActions from './note.action-types';
 
 export const addNewNote = (
@@ -12,8 +14,8 @@ export const addNewNote = (
     body: noteDescription,
     isFavorite: false,
     isArchived: false,
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    createdAt: getCurrentDate(),
+    updatedAt: getCurrentDate(),
   };
 
   return {
